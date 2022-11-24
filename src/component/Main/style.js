@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-const StyleGeradorDeConselhos = styled.div`
+export const ContainerGerador = styled.div`
   max-width: 540px;
   min-width: 350px;
-  background-color: hsl(217, 19%, 24%);
+  background-color: ${({theme}) => theme.bgCard};
   border-radius: 10px;
   padding: 30px;
 
@@ -23,6 +23,7 @@ const StyleGeradorDeConselhos = styled.div`
   .mensagem {
     font-size: 2.5rem;
     margin-bottom: 3rem;
+    color:${({theme}) => theme.color};
   }
 
   .btn-back {
@@ -39,6 +40,14 @@ const StyleGeradorDeConselhos = styled.div`
   .btn-back:hover {
     box-shadow: hsl(150, 100%, 66%) 0px 0px 20px 0px;
   }
+`
+
+export const StyleGeradorDeConselhos = styled.div`
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${({theme}) => theme.bg};
 `;
 
-export default StyleGeradorDeConselhos;
+

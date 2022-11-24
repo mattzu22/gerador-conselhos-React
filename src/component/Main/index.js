@@ -1,13 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import desktop from "../../images/img-desktop.svg";
 import button from "../../images/button.svg";
-import StyleGeradorDeConselhos from "./style";
+import { StyleGeradorDeConselhos, ContainerGerador } from "./style";
+import { ThemeTogglerButton } from "../theme-toggler";
+import { ThemeContext } from "../../context";
 
 const GeradorDeConselhos = () => {
   const [conselho, setConselho] = useState({
     id: 0,
     advice: "",
   });
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,25 +40,28 @@ const GeradorDeConselhos = () => {
   };
 
   return (
-    <StyleGeradorDeConselhos>
-      <div className="gerador-conselhos">
-        <p className="conselho">
-          ADVICE <span>#{conselho.id}</span>
-        </p>
+    <StyleGeradorDeConselhos theme={theme}>
+      <ThemeTogglerButton />
+      <ContainerGerador theme={theme}>
+        <div className="gerador-conselhos">
+          <p className="conselho">
+            ADVICE <span>#{conselho.id}</span>
+          </p>
 
-        <p className="mensagem">"{conselho.advice}"</p>
+          <p className="mensagem">"{conselho.advice}"</p>
 
-        <img src={desktop} alt="image" />
+          <img src={desktop} alt="image" />
 
-        <div className="btn-back" onClick={changeAdvice}>
-          <img
-            className="btn"
-            src={button}
-            alt="botão"
-            style={{ background: "green" }}
-          />
+          <div className="btn-back" onClick={changeAdvice}>
+            <img
+              className="btn"
+              src={button}
+              alt="botão"
+              style={{ background: "green" }}
+            />
+          </div>
         </div>
-      </div>
+      </ContainerGerador>
     </StyleGeradorDeConselhos>
   );
 };

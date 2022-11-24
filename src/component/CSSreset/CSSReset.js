@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
+
 const CSSreset = createGlobalStyle`
     *{
         margin: 0;
@@ -12,15 +13,9 @@ const CSSreset = createGlobalStyle`
     }
 
     body{
-        background-color: hsl(218, 23%, 16%);
         font-family: "Manrope";
         font-weight: 800;
         font-size: 1.6rem;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
     }
 `;
 
