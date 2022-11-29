@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import desktop from "../../images/img-desktop.svg";
 import button from "../../images/button.svg";
 import { StyleGeradorDeConselhos, ContainerGerador } from "./style";
-import { ThemeTogglerButton } from "../theme-toggler";
 import { ThemeContext } from "../../context";
 
 const GeradorDeConselhos = () => {
@@ -13,22 +12,7 @@ const GeradorDeConselhos = () => {
 
   const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const url = "https://api.adviceslip.com/advice";
-      const response = await fetch(url);
-      const json = await response.json();
-
-      setConselho({
-        id: json.slip.id,
-        advice: json.slip.advice,
-      });
-    };
-
-    fetchData();
-  }, []);
-
-  const changeAdvice = async () => {
+  const fetchData = async () => {
     const url = "https://api.adviceslip.com/advice";
     const response = await fetch(url);
     const json = await response.json();
@@ -39,9 +23,12 @@ const GeradorDeConselhos = () => {
     });
   };
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <StyleGeradorDeConselhos theme={theme}>
-      <ThemeTogglerButton />
       <ContainerGerador theme={theme}>
         <div className="gerador-conselhos">
           <p className="conselho">
@@ -52,7 +39,7 @@ const GeradorDeConselhos = () => {
 
           <img src={desktop} alt="image" />
 
-          <div className="btn-back" onClick={changeAdvice}>
+          <div className="btn-back" onClick={fetchData}>
             <img
               className="btn"
               src={button}

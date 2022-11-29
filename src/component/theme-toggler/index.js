@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { ThemeContext, themes } from "../../context";
 import { Button } from "../button";
+import { StyleDiv } from "./style";
 
 export const ThemeTogglerButton = () => {
   const { theme, setTheme } = useContext(ThemeContext);
 
   return (
-    <div>
+    <StyleDiv theme={theme}>
       <Button
         onClick={() =>
           setTheme(theme === themes.light ? themes.dark : themes.light)
         }
-        style={{color: theme.colorMode, backgroundColor: theme.bgMode, position: 'absolute', top: 40, right: 40, padding: '10px 20px', border: 'none', borderRadius: '5px', fontWeight: '900', fontSize: '15px'}}
+        className="btn"
       >
         {theme.mode}
       </Button>
-    </div>
+    </StyleDiv>
   );
 };

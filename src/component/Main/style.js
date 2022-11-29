@@ -6,6 +6,7 @@ export const ContainerGerador = styled.div`
   background-color: ${({theme}) => theme.bgCard};
   border-radius: 10px;
   padding: 30px;
+  transition: all 0.3s ease-in-out;
 
   .gerador-conselhos {
     text-align: center;
@@ -48,6 +49,7 @@ export const StyleGeradorDeConselhos = styled.div`
     align-items: center;
     justify-content: center;
     background-color: ${({theme}) => theme.bg};
+    transition: all 0.3s ease-in-out;
 `;
 
 
