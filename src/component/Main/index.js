@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import desktop from "../../images/img-desktop.svg";
+import mobile from "../../images/img-mobile.svg";
 import button from "../../images/button.svg";
 import { StyleGeradorDeConselhos, ContainerGerador } from "./style";
 import { ThemeContext } from "../../context";
@@ -36,9 +37,10 @@ const GeradorDeConselhos = () => {
           </p>
 
           <p className="mensagem">"{conselho.advice}"</p>
-
-          <img src={desktop} alt="image" />
-
+          <picture>
+            <source srcset={mobile} media="(max-width:540px)"></source>
+            <img src={desktop} alt="image" />
+          </picture>
           <div className="btn-back" onClick={fetchData}>
             <img
               className="btn"

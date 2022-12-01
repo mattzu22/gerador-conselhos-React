@@ -45,6 +45,7 @@ export const ContainerGerador = styled.div`
 
 export const StyleGeradorDeConselhos = styled.div`
     min-height: 100vh;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
