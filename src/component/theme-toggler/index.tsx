@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { ThemeContext, themes } from "../../context";
+import { ThemeContext, ThemeContextType, themes } from "../../context";
 import { Button } from "../button";
 import { StyleDiv } from "./style";
 
 export const ThemeTogglerButton = () => {
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext) as ThemeContextType;
 
   return (
     <StyleDiv theme={theme}>

@@ -1,27 +1,41 @@
+import React from "react";
+import Skeleton from "react-loading-skeleton";
+
 import { useState, useEffect, useContext } from "react";
-import desktop from "../../images/img-desktop.svg";
-import mobile from "../../images/img-mobile.svg";
-import button from "../../images/button.svg";
 import { StyleGeradorDeConselhos, ContainerGerador } from "./style";
-import { ThemeContext } from "../../context";
+import { ThemeContext, ThemeContextType } from "../../context";
+
+const desktop = require("../../images/img-desktop.svg").default  
+const mobile = require("../../images/img-mobile.svg").default 
+const button = require("../../images/button.svg").default
+
+interface AdviceResponse{
+  id: number;
+  advice: string;
+}
 
 const GeradorDeConselhos = () => {
-  const [conselho, setConselho] = useState({
+  const [conselho, setConselho] = useState<AdviceResponse>({
     id: 0,
     advice: "",
   });
 
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext) as ThemeContextType;
 
   const fetchData = async () => {
-    const url = "https://api.adviceslip.com/advice";
-    const response = await fetch(url);
+    try{
+      const url: string = "https://api.adviceslip.com/advice";
+    const response: Response = await fetch(url);
     const json = await response.json();
+    const { id, advice }:AdviceResponse = json.slip
 
     setConselho({
-      id: json.slip.id,
-      advice: json.slip.advice,
+      id: id,
+      advice: advice,
     });
+    }catch(error){
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -33,12 +47,12 @@ const GeradorDeConselhos = () => {
       <ContainerGerador theme={theme}>
         <div className="gerador-conselhos">
           <p className="conselho">
-            ADVICE <span>#{conselho.id}</span>
+            ADVICE <span>#{conselho.id }</span>
           </p>
 
           <p className="mensagem">"{conselho.advice}"</p>
           <picture>
-            <source srcset={mobile} media="(max-width:540px)"></source>
+            <source srcSet={mobile} media="(max-width:540px)"></source>
             <img src={desktop} alt="image" />
           </picture>
           <div className="btn-back" onClick={fetchData}>
